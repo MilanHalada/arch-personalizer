@@ -47,7 +47,8 @@ yazi
 firefox
 foot
 wezterm
-wofi
+walker-bin
+elephant-all
 steam
 btop
 lazygit

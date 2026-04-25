@@ -7,7 +7,7 @@ developer tools, gaming apps, and dotfiles I want on a fresh machine.
 
 - Hyprland + Waybar + hyprpaper + hyprlock + hypridle
 - Foot as the default terminal, with WezTerm installed too
-- Wofi as launcher
+- Walker as launcher (with Elephant service)
 - Mako notifications
 - TUI-centric utilities:
   - btop
@@ -54,7 +54,8 @@ This repo is intentionally a **boilerplate**:
 
 - Default Wi-Fi keybinding uses a wrapper script and prefers `impala` if installed,
   otherwise falls back to `nmtui`.
-- The launcher uses Wofi instead of Walker, so it does not depend on Elephant.
+- The launcher uses Walker and depends on Elephant; `personalize.sh` enables
+  `elephant.service` by default.
 - Steam requires Arch's `multilib` repo. `personalize.sh` enables it by default
   and backs up `/etc/pacman.conf` to `/etc/pacman.conf.arch-personalizer.bak`.
 - Cursor is installed from AUR as `cursor-bin`.

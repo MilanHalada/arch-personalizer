@@ -14,11 +14,43 @@ BIN_SRC="$REPO_DIR/scripts"
 : "${ENABLE_DOCKER:=1}"
 : "${ENABLE_BLUETOOTH:=1}"
 : "${ENABLE_NETWORKMANAGER:=1}"
+: "${ENABLE_ELEPHANT:=1}"
 : "${SET_ZSH_DEFAULT:=0}"
+: "${REINSTALL_CONFIGS:=0}"
 
 log() { printf "\n\033[1;34m==> %s\033[0m\n" "$*"; }
 warn() { printf "\n\033[1;33m!! %s\033[0m\n" "$*"; }
 die() { printf "\n\033[1;31mxx %s\033[0m\n" "$*" >&2; exit 1; }
+
+usage() {
+  cat <<'EOF'
+Usage: ./personalize.sh [options]
+
+Options:
+  --redo-configs, --reinstall-configs
+      Delete managed config/bin targets and re-copy from this repo.
+  -h, --help
+      Show this help and exit.
+EOF
+}
+
+parse_args() {
+  while (($#)); do
+    case "$1" in
+      --redo-configs|--reinstall-configs)
+        REINSTALL_CONFIGS=1
+        ;;
+      -h|--help)
+        usage
+        exit 0
+        ;;
+      *)
+        die "Unknown argument: $1 (try --help)"
+        ;;
+    esac
+    shift
+  done
+}
 
 require_arch() {
   [[ -f /etc/arch-release ]] || die "This bootstrap expects Arch Linux."
@@ -117,6 +149,15 @@ enable_services() {
       warn "Added $USER to docker group. Log out and back in for this to apply."
     fi
   fi
+
+  if [[ "$ENABLE_ELEPHANT" == "1" ]] && command -v elephant >/dev/null 2>&1; then
+    log "Enabling Elephant user service"
+    elephant service enable || warn "Failed to enable Elephant service with CLI"
+    systemctl --user daemon-reload || true
+    if ! systemctl --user enable --now elephant.service; then
+      warn "Could not start elephant.service in this session. Start it manually after login."
+    fi
+  fi
 }
 
 sync_dir() {
@@ -128,6 +169,19 @@ sync_dir() {
 
 install_configs() {
   log "Syncing config files"
+  if [[ "$REINSTALL_CONFIGS" == "1" ]]; then
+    log "Reinstalling managed config/bin targets (destructive sync)"
+    local entry
+    for entry in "$CONFIG_SRC"/*; do
+      [[ -e "$entry" ]] || continue
+      rm -rf "$HOME/.config/$(basename "$entry")"
+    done
+    for entry in "$BIN_SRC"/*; do
+      [[ -e "$entry" ]] || continue
+      rm -rf "$HOME/.local/bin/$(basename "$entry")"
+    done
+  fi
+
   sync_dir "$CONFIG_SRC" "$HOME/.config"
 
   mkdir -p "$HOME/.local/bin"
@@ -166,6 +220,7 @@ run_local_overrides() {
 }
 
 main() {
+  parse_args "$@"
   require_arch
   ensure_sudo
   enable_multilib_repo
@@ -181,7 +236,7 @@ main() {
   echo "Next steps:"
   echo "  1. Re-login if docker group or shell changed"
   echo "  2. Start Hyprland with: Hyprland"
-  echo "  3. Open Foot and run: tmux"
+  echo "  3. Open WezTerm and run: tmux"
   echo "  4. Open Neovim and let LazyVim finish plugin setup"
 }
 

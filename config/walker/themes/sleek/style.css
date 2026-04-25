@@ -1,0 +1,104 @@
+@define-color bg #0b1020;
+@define-color bg_alt #11182d;
+@define-color fg #c8d3f5;
+@define-color fg_muted #8f97b7;
+@define-color accent #7aa2f7;
+@define-color border #2f3d66;
+
+* {
+  all: unset;
+  font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", sans-serif;
+  font-size: 14px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.window {
+  background: alpha(#030611, 0.55);
+}
+
+.box-wrapper {
+  background: @bg;
+  border: 1px solid @border;
+  padding: 10px;
+}
+
+.box,
+.content-container,
+.scroll,
+.list,
+scrolledwindow,
+viewport {
+  background: @bg;
+}
+
+.search-container {
+  background: @bg;
+}
+
+.input {
+  background: #090e1b;
+  color: @fg;
+  border: 1px solid @border;
+  padding: 10px 12px;
+}
+
+.input placeholder {
+  color: @fg_muted;
+  opacity: 0.85;
+}
+
+.input:focus {
+  border-color: @accent;
+}
+
+child {
+  background: @bg;
+}
+
+.item-box {
+  background: @bg;
+  border: 1px solid transparent;
+  padding: 8px 10px;
+}
+
+child:selected .item-box,
+row:selected .item-box {
+  background: @bg_alt;
+  border-color: @accent;
+}
+
+.item-text {
+  color: @fg;
+}
+
+.item-subtext {
+  color: @fg_muted;
+  opacity: 1;
+}
+
+.item-quick-activation {
+  color: @fg_muted;
+}
+
+.keybinds {
+  border-top: 1px solid @border;
+  color: @fg_muted;
+  padding-top: 8px;
+}
+
+.keybind-label {
+  border: 1px solid @border;
+  color: @fg;
+  padding: 2px 6px;
+}
+
+.keybind-button {
+  border: 1px solid @border;
+  background: #0d1426;
+  padding: 4px 8px;
+}
+
+.keybind-bind {
+  color: @fg_muted;
+}

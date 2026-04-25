@@ -1,12 +1,24 @@
-theme = "default"
+theme = "sleek"
+as_window = false
+hide_action_hints = true
+click_to_close = true
+close_when_open = true
+force_keyboard_focus = false
 
 [window]
 anchor = "center"
-width = 900
-height = 540
+width = 760
+height = 420
 
 [list]
-max_entries = 20
+max_entries = 10
 
 [search]
-placeholder = "Launch…"
+placeholder = "  Apps, files, commands…"
+
+[shell]
+exclusive_zone = -1
+anchor_top = false
+anchor_bottom = false
+anchor_left = false
+anchor_right = false
