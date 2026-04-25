@@ -1,9 +1,5 @@
 yay
 cursor-bin
-elephant
-elephant-providerlist
-elephant-desktopapplications
-walker-bin
 bluetui
 lazydocker
 # choose one Wi-Fi TUI path:

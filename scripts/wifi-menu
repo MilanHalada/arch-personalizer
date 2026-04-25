@@ -2,15 +2,15 @@
 set -euo pipefail
 
 if command -v impala >/dev/null 2>&1; then
-  exec wezterm start --always-new-process --class wifi-menu -- bash -lc 'impala'
+  exec foot --app-id wifi-menu bash -lc 'impala'
 fi
 
 if command -v wlctl >/dev/null 2>&1; then
-  exec wezterm start --always-new-process --class wifi-menu -- bash -lc 'wlctl'
+  exec foot --app-id wifi-menu bash -lc 'wlctl'
 fi
 
 if command -v gazelle >/dev/null 2>&1; then
-  exec wezterm start --always-new-process --class wifi-menu -- bash -lc 'gazelle'
+  exec foot --app-id wifi-menu bash -lc 'gazelle'
 fi
 
-exec wezterm start --always-new-process --class wifi-menu -- bash -lc 'nmtui'
+exec foot --app-id wifi-menu bash -lc 'nmtui'

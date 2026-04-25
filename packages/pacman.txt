@@ -45,7 +45,9 @@ thunar-volman
 gvfs
 yazi
 firefox
+foot
 wezterm
+wofi
 steam
 btop
 lazygit

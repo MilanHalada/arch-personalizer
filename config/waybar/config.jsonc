@@ -10,12 +10,16 @@
   "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
+    "persistent-workspaces": {
+      "*": [1, 2, 3, 4, 5]
+    },
     "format": "{icon}",
     "format-icons": {
       "1": "一",
       "2": "二",
       "3": "三",
       "4": "四",
+      "5": "五",
       "active": "",
       "default": ""
     }
@@ -56,7 +60,7 @@
     "format": " {status}",
     "format-connected": " {device_alias}",
     "format-disabled": " off",
-    "on-click": "wezterm start --always-new-process -- bluetui"
+    "on-click": "foot bluetui"
   },
 
   "cpu": {

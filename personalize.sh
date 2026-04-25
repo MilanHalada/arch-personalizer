@@ -14,7 +14,6 @@ BIN_SRC="$REPO_DIR/scripts"
 : "${ENABLE_DOCKER:=1}"
 : "${ENABLE_BLUETOOTH:=1}"
 : "${ENABLE_NETWORKMANAGER:=1}"
-: "${ENABLE_ELEPHANT:=1}"
 : "${SET_ZSH_DEFAULT:=0}"
 
 log() { printf "\n\033[1;34m==> %s\033[0m\n" "$*"; }
@@ -120,15 +119,6 @@ enable_services() {
   fi
 }
 
-enable_elephant_service() {
-  [[ "$ENABLE_ELEPHANT" == "1" ]] || { warn "Skipping Elephant user service"; return 0; }
-  command -v elephant >/dev/null 2>&1 || { warn "Elephant is not installed; Walker may show 'Waiting for elephant'"; return 0; }
-
-  log "Enabling Elephant user service for Walker"
-  elephant service enable || warn "Could not enable elephant.service"
-  systemctl --user start elephant.service || warn "Could not start elephant.service; run: systemctl --user start elephant.service"
-}
-
 sync_dir() {
   local src="$1"
   local dst="$2"
@@ -182,7 +172,6 @@ main() {
   install_pacman_packages
   install_aur_packages
   enable_services
-  enable_elephant_service
   install_optional_iwd_mode
   install_configs
   maybe_set_zsh
@@ -192,7 +181,7 @@ main() {
   echo "Next steps:"
   echo "  1. Re-login if docker group or shell changed"
   echo "  2. Start Hyprland with: Hyprland"
-  echo "  3. Open WezTerm and run: tmux"
+  echo "  3. Open Foot and run: tmux"
   echo "  4. Open Neovim and let LazyVim finish plugin setup"
 }
 

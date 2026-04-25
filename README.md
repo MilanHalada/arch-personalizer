@@ -6,8 +6,8 @@ developer tools, gaming apps, and dotfiles I want on a fresh machine.
 ## What this gives you
 
 - Hyprland + Waybar + hyprpaper + hyprlock + hypridle
-- WezTerm as the terminal
-- Walker as launcher
+- Foot as the default terminal, with WezTerm installed too
+- Wofi as launcher
 - Mako notifications
 - TUI-centric utilities:
   - btop
@@ -54,8 +54,7 @@ This repo is intentionally a **boilerplate**:
 
 - Default Wi-Fi keybinding uses a wrapper script and prefers `impala` if installed,
   otherwise falls back to `nmtui`.
-- Walker needs the Elephant backend. `personalize.sh` installs Elephant with the
-  desktop applications and provider list providers, then starts `elephant.service`.
+- The launcher uses Wofi instead of Walker, so it does not depend on Elephant.
 - Steam requires Arch's `multilib` repo. `personalize.sh` enables it by default
   and backs up `/etc/pacman.conf` to `/etc/pacman.conf.arch-personalizer.bak`.
 - Cursor is installed from AUR as `cursor-bin`.
@@ -69,6 +68,7 @@ This repo is intentionally a **boilerplate**:
 - `config/hypr/bindings.conf` for keybinds
 - `config/hypr/looknfeel.conf` for gaps/borders/blur
 - `config/waybar/*` for bar modules and CSS
-- `config/wezterm/wezterm.lua` for terminal behavior
+- `config/hypr/bindings.conf` to change the default terminal or launcher
+- `config/wezterm/wezterm.lua` if you still want to tune WezTerm
 - `config/nvim/lua/plugins/*.lua` for editor extras
 - `personalize.local.sh` for machine-specific overrides
