@@ -54,6 +54,8 @@ This repo is intentionally a **boilerplate**:
 
 - Default Wi-Fi keybinding uses a wrapper script and prefers `impala` if installed,
   otherwise falls back to `nmtui`.
+- Walker needs the Elephant backend. `personalize.sh` installs Elephant with the
+  desktop applications and provider list providers, then starts `elephant.service`.
 - Steam requires Arch's `multilib` repo. `personalize.sh` enables it by default
   and backs up `/etc/pacman.conf` to `/etc/pacman.conf.arch-personalizer.bak`.
 - Cursor is installed from AUR as `cursor-bin`.
