@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+mkdir -p "$HOME/Pictures/Screenshots"
+FILE="$HOME/Pictures/Screenshots/$(date +%F-%H%M%S).png"
+
+grim -g "$(slurp)" "$FILE"
+wl-copy < "$FILE"
+notify-send "Screenshot saved" "$FILE copied to clipboard"

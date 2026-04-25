@@ -1,0 +1,4 @@
+personalize.local.sh
+*.log
+.DS_Store
+Thumbs.db

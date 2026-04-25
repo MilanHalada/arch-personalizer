@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+HEX="$(hyprpicker -a -f hex 2>/dev/null || true)"
+if [[ -n "${HEX:-}" ]]; then
+  notify-send "Color copied" "$HEX"
+fi

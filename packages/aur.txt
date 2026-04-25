@@ -1,0 +1,12 @@
+yay
+cursor-bin
+walker-bin
+bluetui
+lazydocker
+# choose one Wi-Fi TUI path:
+# impala            # exact Omarchy-like vibe, but expects iwd
+# wlctl             # NetworkManager-based alternative
+# gazelle-tui       # another NetworkManager TUI option
+jetbrains-toolbox
+localsend-bin
+mcpelauncher-ui

@@ -1,0 +1,12 @@
+theme = "default"
+
+[window]
+anchor = "center"
+width = 900
+height = 540
+
+[list]
+max_entries = 20
+
+[search]
+placeholder = "Launch…"
